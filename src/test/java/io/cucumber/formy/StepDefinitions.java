@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 
 public class StepDefinitions {
 
@@ -52,6 +53,18 @@ public class StepDefinitions {
         autocompleteResult.click();
         driver.quit();
     }
+
+    @When("User informs it's name {string} and date {string}")
+    public void user_informs_it_s_name_and_date(String name, String date){
+        WebElement nameField = driver.findElement(By.id("name"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(nameField);
+        nameField.sendKeys(name);
+
+        WebElement dateField = driver.findElement(By.id("date"));
+        dateField.sendKeys(date);
+    }
+
 
 
 
