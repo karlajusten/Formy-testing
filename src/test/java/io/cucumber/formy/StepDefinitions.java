@@ -35,6 +35,23 @@ public class StepDefinitions {
         driver.quit();
     }
 
+    @When("User informs the address {string}")
+    public void user_informs_the_address(String adress) throws InterruptedException {
+        WebElement autocomplete = driver.findElement(By.id("autocomplete"));
+        autocomplete.sendKeys("1555 Park Blvd, Palo Alto, CA");
+        Thread.sleep(1000);
+    }
+
+    @Then("Site shows autocomplete option")
+    public void site_shows_autocomplete_option() {
+        autocompleteResult = driver.findElement(By.className("pac-item"));
+    }
+
+    @Then("user click in autocomplete option")
+    public void user_click_in_autocomplete_option() {
+        autocompleteResult.click();
+        driver.quit();
+    }
 
 
 
