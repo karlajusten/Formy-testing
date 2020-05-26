@@ -1,4 +1,4 @@
-package io.cucumber.skeleton;
+package io.cucumber.formy;
 
 import io.cucumber.junit.CucumberOptions;
 import io.cucumber.junit.Cucumber;
