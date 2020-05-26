@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cucumber</groupId>
-    <artifactId>Formy-testing</artifactId>
+    <artifactId>formy</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
     <name>Formy-testing</name>
@@ -30,6 +30,13 @@
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-junit</artifactId>
             <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
             <scope>test</scope>
         </dependency>
 
