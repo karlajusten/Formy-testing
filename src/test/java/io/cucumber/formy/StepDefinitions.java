@@ -132,6 +132,22 @@ public class StepDefinitions {
         driver.quit();
     }
 
+    @When("User drag and drop a image to the box")
+    public void user_drag_and_drop_a_image_to_the_box() {
+        WebElement image = driver.findElement(By.id("image"));
+        WebElement box = driver.findElement(By.id("box"));
+
+        Actions actions = new Actions(driver);
+        actions.dragAndDrop(image,box).build().perform();
+    }
+
+    @Then("Site shows the message {string} in the box")
+    public void site_shows_the_message_in_the_box(String droppedMsg) {
+        Boolean checkDrop = driver.findElement(By.xpath("//p[contains(text(),'" + droppedMsg +"')]")).isDisplayed();
+        assertEquals(true, checkDrop);
+        driver.quit();
+    }
+
 
 
 

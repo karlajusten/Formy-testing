@@ -29,7 +29,12 @@ Feature: Formy web site
         And User clicks on OK button
 
     Scenario: Open Modal
-            Given User access "modal" page from Formy web site
-            When User clicks in open modal button
-            Then Site shows a modal with title "Modal title"
-            And User clicks on close button
+        Given User access "modal" page from Formy web site
+        When User clicks in open modal button
+        Then Site shows a modal with title "Modal title"
+        And User clicks on close button
+
+    Scenario: Drag and Drop Image
+        Given User access "dragdrop" page from Formy web site
+        When User drag and drop a image to the box
+        Then Site shows the message "Dropped!" in the box
