@@ -4,6 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,6 +17,7 @@ public class StepDefinitions {
 
     WebDriver driver;
     WebElement autocompleteResult;
+    Alert alert;
 
     @Given("User access {string} page from Formy web site")
     public void user_access_page_from_Formy_web_site(String pageName) {
@@ -92,7 +94,28 @@ public class StepDefinitions {
                 assertEquals(msg, titlePage.getAttribute("innerHTML"));
             }
         }
-
         driver.quit();
     }
+
+    @When("User clicks in open alert button")
+    public void user_clicks_in_open_alert_button() {
+        WebElement alertButton = driver.findElement(By.id("alert-button"));
+        alertButton.click();
+    }
+
+    @Then("Site shows a alert with message {string}")
+    public void site_shows_a_alert_with_message(String msg) {
+        alert = driver.switchTo().alert();
+        assertEquals(msg, alert.getText());
+    }
+
+    @Then("User clicks on OK button")
+    public void user_clicks_on_OK_button() {
+        alert.accept();
+        driver.quit();
+    }
+
+
+
+
 }

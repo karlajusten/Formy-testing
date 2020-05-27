@@ -21,3 +21,9 @@ Feature: Formy web site
         Given User access "switch-window" page from Formy web site
         When User clicks in open new tab button
         Then New tab is created with the home page of Formy web site that has the message "Welcome to Formy"
+
+    Scenario: Open Alert
+        Given User access "switch-window" page from Formy web site
+        When User clicks in open alert button
+        Then Site shows a alert with message "This is a test alert!"
+        And User clicks on OK button
