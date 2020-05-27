@@ -10,6 +10,7 @@ Feature: Formy web site
         When User informs the address "1555 Park Blvd, Palo Alto, CA"
         Then Site shows autocomplete option
         And user click in autocomplete option
+        And the Zip code field shows value "94306"
 
     Scenario: Test scroll page
         Given User access "scroll" page from Formy web site

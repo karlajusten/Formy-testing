@@ -10,6 +10,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
+import static org.junit.Assert.assertEquals;
+
 public class StepDefinitions {
 
     WebDriver driver;
@@ -37,21 +39,20 @@ public class StepDefinitions {
     }
 
     @When("User informs the address {string}")
-    public void user_informs_the_address(String adress) throws InterruptedException {
+    public void user_informs_the_address(String adress)  {
         WebElement autocomplete = driver.findElement(By.id("autocomplete"));
         autocomplete.sendKeys("1555 Park Blvd, Palo Alto, CA");
-        Thread.sleep(1000);
     }
 
     @Then("Site shows autocomplete option")
-    public void site_shows_autocomplete_option() {
+    public void site_shows_autocomplete_option() throws InterruptedException {
+        Thread.sleep(1000);
         autocompleteResult = driver.findElement(By.className("pac-item"));
     }
 
     @Then("user click in autocomplete option")
     public void user_click_in_autocomplete_option() {
         autocompleteResult.click();
-        driver.quit();
     }
 
     @When("User informs it's name {string} and date {string}")
@@ -65,9 +66,11 @@ public class StepDefinitions {
         dateField.sendKeys(date);
     }
 
-
-
-
-
-
+    @Then("the Zip code field shows value {string}")
+    public void the_Zip_code_field_shows_value(String expectedZipcode) throws InterruptedException {
+        Thread.sleep(1000);
+        WebElement zipcodeField = driver.findElement(By.id("postal_code"));
+        assertEquals(expectedZipcode, zipcodeField.getAttribute("value"));
+        driver.quit();
+    }
 }
