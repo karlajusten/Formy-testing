@@ -27,3 +27,9 @@ Feature: Formy web site
         When User clicks in open alert button
         Then Site shows a alert with message "This is a test alert!"
         And User clicks on OK button
+
+    Scenario: Open Modal
+            Given User access "modal" page from Formy web site
+            When User clicks in open modal button
+            Then Site shows a modal with title "Modal title"
+            And User clicks on close button

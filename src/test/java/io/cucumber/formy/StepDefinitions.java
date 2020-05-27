@@ -4,10 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
@@ -114,6 +111,27 @@ public class StepDefinitions {
         alert.accept();
         driver.quit();
     }
+
+    @When("User clicks in open modal button")
+    public void user_clicks_in_open_modal_button() {
+        WebElement modalButton = driver.findElement(By.id("modal-button"));
+        modalButton.click();
+    }
+
+    @Then("Site shows a modal with title {string}")
+    public void site_shows_a_modal_with_title(String modalTitle) {
+        WebElement modalButton = driver.findElement(By.xpath("//h5[@id='exampleModalLabel']"));
+        assertEquals(modalTitle, modalButton.getAttribute("innerHTML"));
+    }
+
+    @Then("User clicks on close button")
+    public void user_clicks_on_close_button() {
+        WebElement closeButton = driver.findElement(By.id("close-button"));
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("arguments[0].click();", closeButton);
+        driver.quit();
+    }
+
 
 
 
