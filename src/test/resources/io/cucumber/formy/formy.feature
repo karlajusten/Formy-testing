@@ -16,3 +16,8 @@ Feature: Formy web site
         Given User access "scroll" page from Formy web site
         When User informs it's name "Karla" and date "26/05/2020"
         Then Nothing happens
+
+    Scenario: Switch to active window
+        Given User access "switch-window" page from Formy web site
+        When User clicks in open new tab button
+        Then New tab is created with the home page of Formy web site that has the message "Welcome to Formy"

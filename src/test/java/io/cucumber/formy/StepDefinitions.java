@@ -73,4 +73,26 @@ public class StepDefinitions {
         assertEquals(expectedZipcode, zipcodeField.getAttribute("value"));
         driver.quit();
     }
+
+    @When("User clicks in open new tab button")
+    public void user_clicks_in_open_new_tab_button()  {
+        WebElement newTabButton = driver.findElement(By.id("new-tab-button"));
+        newTabButton.click();
+    }
+
+    @Then("New tab is created with the home page of Formy web site that has the message {string}")
+    public void new_tab_is_created_with_the_home_page_of_Formy_web_site_that_has_the_message(String msg)  {
+
+        String originalHandle = driver.getWindowHandle();
+
+        for(String handle: driver.getWindowHandles()) {
+            if(!originalHandle.equals(handle)){
+                driver.switchTo().window(handle);
+                WebElement titlePage = driver.findElement(By.xpath("//h1[@class='display-3']"));
+                assertEquals(msg, titlePage.getAttribute("innerHTML"));
+            }
+        }
+
+        driver.quit();
+    }
 }
