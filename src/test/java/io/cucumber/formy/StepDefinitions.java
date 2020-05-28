@@ -148,6 +148,19 @@ public class StepDefinitions {
         driver.quit();
     }
 
+    @When("User clicks on the three radio buttons")
+    public void user_clicks_on_the_three_radio_buttons() {
+        WebElement radioButton1 = driver.findElement(By.id("radio-button-1"));
+        radioButton1.click();
+
+        WebElement radioButton2 = driver.findElement(By.cssSelector("input[value='option2']"));
+        radioButton2.click();
+
+        WebElement radioButton3 = driver.findElement(By.xpath("/html/body/div/div[3]/input"));
+        radioButton3.click();
+    }
+
+
 
 
 

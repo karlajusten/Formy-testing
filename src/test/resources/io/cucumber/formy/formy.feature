@@ -38,3 +38,8 @@ Feature: Formy web site
         Given User access "dragdrop" page from Formy web site
         When User drag and drop a image to the box
         Then Site shows the message "Dropped!" in the box
+
+    Scenario: Radio Button
+        Given User access "radiobutton" page from Formy web site
+        When User clicks on the three radio buttons
+        Then Nothing happens
