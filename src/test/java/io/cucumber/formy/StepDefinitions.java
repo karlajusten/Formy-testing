@@ -175,4 +175,10 @@ public class StepDefinitions {
         WebElement autocompleteItem = driver.findElement(By.id("autocomplete"));
         autocompleteItem.click();
     }
+
+    @When("User chooses to upload the {string} file")
+    public void userChoosesToUploadTheFile(String fileName) {
+        WebElement fileUploadField = driver.findElement(By.id("file-upload-field"));
+        fileUploadField.sendKeys(fileName);
+    }
 }

@@ -53,3 +53,8 @@ Feature: Formy web site
         Given User access "dropdown" page from Formy web site
         When User clicks on dropdown button and chooses autocomplete option
         Then Nothing happens
+
+    Scenario: Test File Upload
+        Given User access "fileupload" page from Formy web site
+        When User chooses to upload the "file-to-upload.png" file
+        Then Nothing happens
