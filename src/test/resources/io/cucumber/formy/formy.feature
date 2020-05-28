@@ -43,3 +43,8 @@ Feature: Formy web site
         Given User access "radiobutton" page from Formy web site
         When User clicks on the three radio buttons
         Then Nothing happens
+
+    Scenario: Test Date Picker
+        Given User access "datepicker" page from Formy web site
+        When User chooses the date "03/03/2020" and press enter
+        Then Nothing happens

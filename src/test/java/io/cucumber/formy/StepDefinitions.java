@@ -160,9 +160,11 @@ public class StepDefinitions {
         radioButton3.click();
     }
 
-
-
-
-
+    @When("User chooses the date {string} and press enter")
+    public void user_chooses_the_date_and_press_enter(String date) {
+        WebElement dateField = driver.findElement(By.id("datepicker"));
+        dateField.sendKeys("03/03/2020");
+        dateField.sendKeys(Keys.RETURN);
+    }
 
 }
