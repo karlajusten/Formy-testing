@@ -48,3 +48,8 @@ Feature: Formy web site
         Given User access "datepicker" page from Formy web site
         When User chooses the date "03/03/2020" and press enter
         Then Nothing happens
+
+    Scenario: Test Dropdown
+        Given User access "dropdown" page from Formy web site
+        When User clicks on dropdown button and chooses autocomplete option
+        Then Nothing happens

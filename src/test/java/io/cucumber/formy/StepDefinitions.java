@@ -167,4 +167,12 @@ public class StepDefinitions {
         dateField.sendKeys(Keys.RETURN);
     }
 
+    @When("User clicks on dropdown button and chooses autocomplete option")
+    public void userClicksOnDropdownButtonAndChoosesAutocompleteOption() {
+        WebElement dropDownMenu = driver.findElement(By.id("dropdownMenuButton"));
+        dropDownMenu.click();
+
+        WebElement autocompleteItem = driver.findElement(By.id("autocomplete"));
+        autocompleteItem.click();
+    }
 }
