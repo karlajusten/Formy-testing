@@ -58,3 +58,15 @@ Feature: Formy web site
         Given User access "fileupload" page from Formy web site
         When User chooses to upload the "file-to-upload.png" file
         Then Nothing happens
+
+    Scenario: Test User submit a form
+        Given User access "form" page from Formy web site
+        When User set first name as "Karla"
+        And User set last name as "Justen"
+        And User set job title as "QA Engineer"
+        And  User set highest level of education as "College"
+        And User set sex as "Female"
+        And User set years of experience as 6
+        And User set date as "29/05/2020"
+        And User clicks on submit button
+        Then System redirects to page with "The form was successfully submitted!" message

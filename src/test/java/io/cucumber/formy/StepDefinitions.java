@@ -1,5 +1,6 @@
 package io.cucumber.formy;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -7,6 +8,8 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.junit.Assert.assertEquals;
 
@@ -40,12 +43,12 @@ public class StepDefinitions {
     @When("User informs the address {string}")
     public void user_informs_the_address(String adress)  {
         WebElement autocomplete = driver.findElement(By.id("autocomplete"));
-        autocomplete.sendKeys("1555 Park Blvd, Palo Alto, CA");
+        autocomplete.sendKeys(adress);
     }
 
     @Then("Site shows autocomplete option")
     public void site_shows_autocomplete_option() throws InterruptedException {
-        Thread.sleep(1000);
+        Thread.sleep(5000);
         autocompleteResult = driver.findElement(By.className("pac-item"));
     }
 
@@ -163,7 +166,7 @@ public class StepDefinitions {
     @When("User chooses the date {string} and press enter")
     public void user_chooses_the_date_and_press_enter(String date) {
         WebElement dateField = driver.findElement(By.id("datepicker"));
-        dateField.sendKeys("03/03/2020");
+        dateField.sendKeys(date);
         dateField.sendKeys(Keys.RETURN);
     }
 
@@ -180,5 +183,89 @@ public class StepDefinitions {
     public void userChoosesToUploadTheFile(String fileName) {
         WebElement fileUploadField = driver.findElement(By.id("file-upload-field"));
         fileUploadField.sendKeys(fileName);
+    }
+
+    @When("User set first name as {string}")
+    public void userSetFirstNameAs(String firstName) {
+        driver.findElement(By.id("first-name")).sendKeys(firstName);
+    }
+
+    @And("User set last name as {string}")
+    public void userSetLastNameAs(String lastName) {
+        driver.findElement(By.id("last-name")).sendKeys(lastName);
+    }
+
+    @And("User set job title as {string}")
+    public void userSetJobTitleAs(String jobTitle) {
+        driver.findElement(By.id("job-title")).sendKeys(jobTitle);
+    }
+
+    @And("User set highest level of education as {string}")
+    public void userSetHighestLevelOfEducationAs(String education) {
+
+        if(education.equals("High School")){
+            driver.findElement(By.id("radio-button-1")).click();
+        }else if(education.equals("College")){
+            driver.findElement(By.id("radio-button-2")).click();
+        }else if(education.equals("Grad School")){
+            driver.findElement(By.id("radio-button-3")).click();
+        }
+        else{
+            throw new IllegalArgumentException("ERROR: " + education + "is not a education option");
+        }
+    }
+
+    @And("User set sex as {string}")
+    public void userSetSexAs(String sex) {
+
+        if(sex.equals("Male")){
+            driver.findElement(By.id("checkbox-1")).click();
+        }else if(sex.equals("Female")){
+            driver.findElement(By.id("checkbox-2")).click();
+        }else if(sex.equals("Prefer not to say")){
+            driver.findElement(By.id("checkbox-3")).click();
+        }
+        else{
+            throw new IllegalArgumentException("ERROR: " + sex + "is not a sex option");
+        }
+    }
+
+    @And("User set years of experience as {int}")
+    public void userSetYearsOfExperienceAs(int experience) {
+
+        if(experience>=0 && experience<=1 ){
+            driver.findElement(By.cssSelector("option[value='1']")).click();
+        }else if(experience>=2 && experience<=4 ){
+            driver.findElement(By.cssSelector("option[value='2']")).click();
+        }else if(experience>=5 && experience<=9){
+            driver.findElement(By.cssSelector("option[value='3']")).click();
+        }
+        else if(experience >= 10){
+            driver.findElement(By.cssSelector("option[value='4']")).click();
+        }
+        else{
+            throw new IllegalArgumentException("ERROR: " + experience + "is not valid");
+        }
+    }
+
+    @And("User set date as {string}")
+    public void userSetDateAs(String date) throws InterruptedException {
+        driver.findElement(By.id("datepicker")).sendKeys(date);
+        driver.findElement(By.id("datepicker")).sendKeys(Keys.RETURN);
+    }
+
+    @And("User clicks on submit button")
+    public void userClicksOnSubmitButton() {
+        driver.findElement(By.cssSelector(".btn.btn-lg.btn-primary")).click();
+    }
+
+    @Then("System redirects to page with {string} message")
+    public void systemRedirectsToPageWithMessage(String msg) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        WebElement alert = wait.until((ExpectedConditions.visibilityOfElementLocated(By.className("alert"))));
+
+        assertEquals(msg, alert.getText());
+
+        driver.quit();
     }
 }
